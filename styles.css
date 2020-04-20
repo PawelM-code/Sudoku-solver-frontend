@@ -11,13 +11,12 @@ body {
 }
 
 .sudoku-solver {
-    width: 50%;
-    height: 50%;
+    width: 35vw;
+    height: 35vw;
     display: flex;
     margin: auto;
     flex-wrap: wrap;
     border: 2px solid gray;
-    perspective: 1000px;
 }
 
 .sudoku-box {
@@ -28,14 +27,33 @@ body {
     flex-wrap: wrap;
     position: relative;
     border: 1px solid black;
-    /* margin: auto; */
+}
+
+.buttons {
+    padding: 10px;
+    margin: auto;
+}
+
+.button_c {
+    color: #494949 !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: #ffffff;
+    padding: 10px;
+    border: 3px solid #494949 !important;
+    transition: all 0.4s ease 0s;
+}
+
+.button_c:hover {
+    color: #ffffff !important;
+    background: #f6b93b;
+    border-color: #f6b93b !important;
+    transition: all 0.4s ease 0s;
 }
 
 input {
-    /* position: relative; */
     text-align: center;
     width: calc(33.333%);
     height: calc(33.333%);
     justify-content: center;
-    /* border-radius: 3px; */
 }
