@@ -1,36 +1,52 @@
 const solveSudokuButton = document.getElementById('solve-sudoku');
 const clearBoardButton = document.getElementById('clear-board');
+const sudokuUrl = 'http://localhost:8080/v1/sudoku/';
 
-let request = '';
 let xmlHttpResponse;
+let isStatus400;
 
-function buildRequest() {
-    request = '';
+function getSudokuBoard() {
+    let request = '';
+    isStatus400 = false;
 
     document.getElementsByName('quantity').forEach(input => {
         if (input.value.toString() !== "") {
             request = request.concat(input.id.toString(), input.value.toString());
         }
-
     });
-    console.log(request);
-    xmlHttpResponse = httpGet('http://localhost:8080/v1/sudoku/' + request);
-    responseIterate();
+
+    if (request === '') {
+        alert("Enter data");
+    } else {
+        xmlHttpResponse = sendRequest(sudokuUrl + request);
+        if (!isStatus400) {
+            fillSudokuBoard();
+        }
+    }
 };
 
-function httpGet(theUrl) {
+function sendRequest(theUrl) {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", theUrl, false); // false for synchronous request
+    xmlHttp.onreadystatechange = () => {
+        if (xmlHttp.status === 400) {
+            isStatus400 = true;
+            alert("Incorrect sudoku init values.");
+        }
+    };
     xmlHttp.send(null);
     return xmlHttp.response;
 }
 
-function responseIterate() {
+function fillSudokuBoard() {
     let json = JSON.parse(xmlHttpResponse);
     for (var i = 0; i < json.sudokuRowDtoList.length; i++) {
         for (var j = 0; j < json.sudokuRowDtoList[i].sudokuElementDtoList.length; j++) {
-            console.log("Row and Col: " + i.toString() + j.toString() + "Value: " + json.sudokuRowDtoList[i].sudokuElementDtoList[j].value.toString());
-            document.getElementById((i + 1).toString() + (j + 1).toString()).value = json.sudokuRowDtoList[i].sudokuElementDtoList[j].value;
+            let element = document.getElementById((i + 1).toString() + (j + 1).toString());
+            if (element.value !== null && element.value === '') {
+                element.style.color = 'red';
+                element.value = json.sudokuRowDtoList[i].sudokuElementDtoList[j].value;
+            }
         }
     }
 }
@@ -38,10 +54,12 @@ function responseIterate() {
 function clearBoard() {
     for (let i = 1; i < 10; i++) {
         for (let j = 1; j < 10; j++) {
-            document.getElementById(i.toString() + j.toString()).value = "";
+            let val = document.getElementById(i.toString() + j.toString());
+            val.value = "";
+            val.style.color = 'black';
         }
     }
 }
 
-solveSudokuButton.onclick = function () { buildRequest() };
+solveSudokuButton.onclick = function () { getSudokuBoard() };
 clearBoardButton.onclick = function () { clearBoard() };
