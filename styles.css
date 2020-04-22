@@ -6,8 +6,21 @@
 
 body {
     height: 100vh;
-    display: flex;
-    background-color: white;
+    font-family: 'Lora', serif;
+    display: contents;
+    background-color: white;  
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.title-sudoku {
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
 }
 
 .sudoku-solver {
@@ -61,3 +74,14 @@ input {
     height: calc(33.333%);
     justify-content: center;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}
+

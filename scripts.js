@@ -1,6 +1,6 @@
 const solveSudokuButton = document.getElementById('solve-sudoku');
 const clearBoardButton = document.getElementById('clear-board');
-const sudokuUrl = 'http://localhost:8080/v1/sudoku/';
+const sudokuUrl = 'https://sudoku-solverr.herokuapp.com/v1/sudoku/';
 
 let xmlHttpResponse;
 let isStatus400;
