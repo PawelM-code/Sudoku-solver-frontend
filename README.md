@@ -1,4 +1,4 @@
-# InvoiceMe App Vaadin
+# Sudoku solver website
 Frontend Sudoku Solver (HTML, CSS, JavaScript).<br />
 Simple website that will you solve even the most difficult sudoku.
 
@@ -14,5 +14,5 @@ Project is created with:
 * JavaScript
 
 ## Screenshot
-![](img/sudoku1.jpg)
-![](img/sudoku2.jpg)
+![](img/sudoku_1.jpg)
+![](img/sudoku_2.jpg)
