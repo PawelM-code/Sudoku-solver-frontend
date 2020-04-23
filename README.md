@@ -13,6 +13,6 @@ Project is created with:
 * CSS
 * JavaScript
 
-## Screenshot
+## Screenshot 
 ![](img/sudoku1.jpg)
 ![](img/sudoku2.jpg)
